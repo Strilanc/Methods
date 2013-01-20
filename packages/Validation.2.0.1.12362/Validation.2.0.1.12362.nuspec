@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Validation</id>
+    <version>2.0.1.12362</version>
+    <title>Input and runtime validation</title>
+    <authors>Andrew Arnott</authors>
+    <owners>Andrew Arnott</owners>
+    <licenseUrl>http://opensource.org/licenses/MS-PL</licenseUrl>
+    <projectUrl>http://github.com/aarnott/Validation</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Method input validation and runtime checks that report errors or throw exceptions when failures are detected.</description>
+    <releaseNotes />
+    <copyright>Copyright © Andrew Arnott</copyright>
+    <tags>InputValidation IntegrityCheck</tags>
+    <references>
+      <reference file="Validation.dll" />
+    </references>
+  </metadata>
+</package>

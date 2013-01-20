@@ -18,7 +18,8 @@ namespace Methods {
                                  .ContinueWith(x => e))
                 .ToObservable()
                 .WhenEach()
-                .Concat()
+                .Where(e => e.IsCompleted)
+                .Select(e => e.Result)
                 .ForEachAsync(Console.WriteLine);
         }
     }
