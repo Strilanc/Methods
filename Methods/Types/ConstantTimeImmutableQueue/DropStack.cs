@@ -7,7 +7,7 @@ namespace Methods.ConstantTimeImmutableQueue {
     /// Items on the bottom of the stack can 'dropped', which ignores them by decrementing the count.
     /// Dropped items are still in the underlying stack, and can't be garbage collected, but are ignored.
     /// </summary>
-    public struct DropStack<T> {
+    internal struct DropStack<T> {
         public static readonly DropStack<T> Empty = default(DropStack<T>);
 
         private readonly ImmutableStack<T> _stack;
@@ -39,12 +39,14 @@ namespace Methods.ConstantTimeImmutableQueue {
         ///<summary>A modified copy with an item removed from the top of the stack.</summary>
         public DropStack<T> Pop() {
             if (IsEmpty) throw new InvalidOperationException("Empty");
+            if (Count == 1) return Empty;
             return new DropStack<T>(Stack.Pop(), _count - 1);
         }
         ///<summary>A modified copy with an item ignored from the bottom of the stack.</summary>
         public DropStack<T> Drop() {
             if (IsEmpty) throw new InvalidOperationException("Empty");
-            return new DropStack<T>(Stack, Math.Max(0, _count - 1));
+            if (Count == 1) return Empty;
+            return new DropStack<T>(Stack, _count - 1);
         }
         ///<summary>A modified copy ignoring everything except the given number of items from the top of the stack.</summary>
         public DropStack<T> KeepOnly(int keptCount) {

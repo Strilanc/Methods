@@ -62,9 +62,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Types\ConstantTimeImmutableQueue\DropStackTest.cs" />
     <Compile Include="TestUtil\AssertUtil.cs" />
     <Compile Include="TestUtil\TestUtil.cs" />
-    <Compile Include="WhenEachTest.cs" />
+    <Compile Include="Methods\WhenEachTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
