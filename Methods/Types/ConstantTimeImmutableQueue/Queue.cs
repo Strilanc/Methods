@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace Methods.ConstantTimeImmutableQueue {
     /// <summary>An immutable queue of items with guaranteed constant time Enqueue/Dequeue/Peek operations.</summary>

@@ -7,7 +7,7 @@ namespace Methods.ConstantTimeImmutableQueue {
     /// Items on the bottom of the stack can 'dropped', which ignores them by decrementing the count.
     /// Dropped items are eventually dereferenced by later copy-modified versions of the stack, so they can be garbage collected.
     /// </summary>
-    internal sealed class DropCollectStack<T> {
+    public sealed class DropCollectStack<T> {
         public static readonly DropCollectStack<T> Empty = new DropCollectStack<T>();
 
         private readonly DropStack<T> _items;
@@ -53,7 +53,7 @@ namespace Methods.ConstantTimeImmutableQueue {
                     partialRebuiltItems: _partialRebuiltItems.Push(_partialReversedItems.Peek()))
                 // then, if there are new items, place them in _itemsTraverser for iterative transfer
               : _items.Count > _partialRebuiltItems.Count ? With(
-                    partialRebuiltItems: _items.Pop().KeepOnly(_items.Count - _partialRebuiltItems.Count - 1), 
+                    itemsTraverser: _items.Pop().KeepOnly(_items.Count - _partialRebuiltItems.Count - 1), 
                     partialReversedItems: _partialReversedItems.Push(_items.Peek))
                 // if there were no new items, then we've finished rebuilding and can use the result
               : new DropCollectStack<T>(_partialRebuiltItems, _partialRebuiltItems);
