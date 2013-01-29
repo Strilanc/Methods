@@ -57,6 +57,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Types\ActorModel\ActorSynchronizationContext.cs" />
+    <Compile Include="Types\ActorModel\SynchronizationContextAwaiter.cs" />
+    <Compile Include="Types\ActorModel\SynchronizationContextExtensions.cs" />
     <Compile Include="Types\ConstantTimeImmutableQueue\DropCollectStack.cs" />
     <Compile Include="Types\ConstantTimeImmutableQueue\Queue.cs" />
     <Compile Include="Types\ConstantTimeImmutableQueue\DropStack.cs" />

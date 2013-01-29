@@ -68,6 +68,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Types\ActorModel\ActorSynchronizationContextTest.cs" />
+    <Compile Include="Types\ActorModel\SynchronizationContextAwaiterTest.cs" />
     <Compile Include="Types\ConstantTimeImmutableQueue\QueueTest.cs" />
     <Compile Include="Types\ConstantTimeImmutableQueue\DropCollectStackTest.cs" />
     <Compile Include="Types\ConstantTimeImmutableQueue\DropStackTest.cs" />
