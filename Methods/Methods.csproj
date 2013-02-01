@@ -60,7 +60,7 @@
     <Compile Include="Methods\LineSweepPoint\Point.cs" />
     <Compile Include="Methods\LineSweepPoint\Vector.cs" />
     <Compile Include="Methods\LineSweepPoint\LineSegment.cs" />
-    <Compile Include="Methods\LineSweepPoint\GeometryUtilities.cs" />
+    <Compile Include="Methods\LineSweepPoint\GeometryUtil.cs" />
     <Compile Include="Types\ActorModel\ActorSynchronizationContext.cs" />
     <Compile Include="Types\ActorModel\SynchronizationContextAwaiter.cs" />
     <Compile Include="Types\ActorModel\SynchronizationContextExtensions.cs" />
