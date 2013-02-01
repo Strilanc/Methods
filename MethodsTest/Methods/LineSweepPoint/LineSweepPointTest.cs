@@ -19,6 +19,14 @@ internal static class GeoTestUtil {
             Assert.AreEqual(r1[i].AcrossProportion, r2[i].AcrossProportion, 0.0001);
         }
     }
+    public static void AssertSequenceApproximates(this IEnumerable<double> actual, params double[] expected) {
+        var r1 = actual.ToArray();
+        var r2 = expected.ToArray();
+        r1.Length.AssertEquals(r2.Length);
+        for (var i = 0; i < r1.Length; i++) {
+            Assert.AreEqual(r1[i], r2[i], 0.0001);
+        }
+    }
 }
 
 [TestClass]
@@ -99,5 +107,20 @@ public class GeometryUtilTest {
             new Point(+1, -1).To(new Point(+1, -0.5)),
             default(Point)
         ).AssertSequenceApproximates();
+    }
+    [TestMethod]
+    public void Quadratic() {
+        GeometryUtil.QuadraticRoots(1, 0, 0).AssertSequenceApproximates(0);
+        GeometryUtil.QuadraticRoots(0, 1, 0).AssertSequenceApproximates(0);
+        GeometryUtil.QuadraticRoots(0, 0, 1).AssertSequenceApproximates();
+        
+        GeometryUtil.QuadraticRoots(1, 1, 0).AssertSequenceApproximates(-1, 0);
+        GeometryUtil.QuadraticRoots(0, 1, 1).AssertSequenceApproximates(-1);
+        GeometryUtil.QuadraticRoots(1, 0, 1).AssertSequenceApproximates();
+
+        GeometryUtil.QuadraticRoots(1, 0, -1).AssertSequenceApproximates(-1, 1);
+        GeometryUtil.QuadraticRoots(1, 2, 1).AssertSequenceApproximates(-1);
+        
+        GeometryUtil.QuadraticRoots(0, 0, 0).Any().AssertIsTrue();
     }
 }
