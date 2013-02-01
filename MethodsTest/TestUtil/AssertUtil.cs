@@ -15,6 +15,10 @@ internal static class AssertUtil {
         Assert.IsTrue(v1.SequenceEqual(v2));
     }
     [DebuggerStepThrough]
+    public static void AssertSequenceEquals<T>(this IEnumerable<T> v1, params T[] v2) {
+        Assert.IsTrue(v1.SequenceEqual(v2));
+    }
+    [DebuggerStepThrough]
     public static void AssertSetEquals<T>(this IEnumerable<T> v1, IEnumerable<T> v2) {
         var h1 = new HashSet<T>(v1);
         var h2 = new HashSet<T>(v2);
