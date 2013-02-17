@@ -68,6 +68,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Methods\ExpressionHash\DynamicHasherTest.cs" />
     <Compile Include="Methods\LineSweepPoint\LineSweepPointTest.cs" />
     <Compile Include="Types\ActorModel\ActorSynchronizationContextTest.cs" />
     <Compile Include="Types\ActorModel\SynchronizationContextAwaiterTest.cs" />

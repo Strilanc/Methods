@@ -57,6 +57,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Methods\ExpressionHash\CountingStream.cs" />
+    <Compile Include="Methods\ExpressionHash\DynamicHasher.cs" />
+    <Compile Include="Methods\ExpressionHash\IntStream.cs" />
+    <Compile Include="Methods\ExpressionHash\ExpressionHashUtil.cs" />
+    <Compile Include="Methods\ExpressionHash\RepeatStream.cs" />
     <Compile Include="Methods\LineSweepPoint\Point.cs" />
     <Compile Include="Methods\LineSweepPoint\Vector.cs" />
     <Compile Include="Methods\LineSweepPoint\LineSegment.cs" />
