@@ -1,0 +1,166 @@
+﻿            var state = InitialState.ToArray();
+00000000  push        ebp 
+00000001  mov         ebp,esp 
+00000003  push        edi 
+00000004  push        esi 
+00000005  push        ebx 
+00000006  sub         esp,24h 
+00000009  mov         dword ptr [ebp-24h],ecx 
+0000000c  mov         dword ptr [ebp-28h],edx 
+0000000f  mov         eax,dword ptr [ebp-24h] 
+00000012  mov         ecx,dword ptr [eax] 
+00000014  call        6A6F4380 
+00000019  mov         ebx,eax 
+
+            var buffer = new int[1 << 12];
+0000001b  mov         ecx,6CAE4C8Ah 
+00000020  mov         edx,1000h 
+00000025  call        FFE3E6E0 
+0000002a  mov         dword ptr [ebp-2Ch],eax 
+                var n = data.Read(buffer);
+0000002d  mov         ecx,dword ptr [ebp-28h] 
+00000030  mov         edx,dword ptr [ebp-2Ch] 
+00000033  mov         eax,dword ptr [ecx] 
+00000035  mov         eax,dword ptr [eax+28h] 
+00000038  call        dword ptr [eax+10h] 
+0000003b  mov         dword ptr [ebp-10h],eax 
+                if (n == 0) break;
+0000003e  test        eax,eax 
+00000040  je          00000129 
+
+                // feed data through the state via custom steps
+                for (var i = 0; i < n; i++) {
+00000046  xor         edx,edx 
+00000048  mov         dword ptr [ebp-14h],edx 
+0000004b  test        eax,eax 
+0000004d  jle         0000002D 
+0000004f  mov         eax,dword ptr [ebp-2Ch] 
+00000052  mov         edx,dword ptr [eax+4] 
+00000055  mov         dword ptr [ebp-20h],edx 
+                    // input into hash via first state variable
+                    state[0] = buffer[i];
+00000058  mov         eax,dword ptr [ebp-14h] 
+0000005b  mov         edx,dword ptr [ebp-2Ch] 
+0000005e  mov         ecx,dword ptr [ebp-20h] 
+00000061  cmp         eax,ecx 
+00000063  jae         0000015A 
+00000069  mov         eax,dword ptr [edx+eax*4+8] 
+0000006d  mov         ecx,dword ptr [ebx+4] 
+00000070  cmp         ecx,0 
+00000073  jbe         0000015A 
+00000079  mov         dword ptr [ebx+8],eax 
+                    foreach (var step in Steps) {
+0000007c  mov         eax,dword ptr [ebp-24h] 
+0000007f  mov         eax,dword ptr [eax+4] 
+00000082  mov         dword ptr [ebp-30h],eax 
+00000085  xor         edx,edx 
+00000087  mov         dword ptr [ebp-18h],edx 
+0000008a  mov         eax,dword ptr [ebp-30h] 
+0000008d  cmp         dword ptr [eax+4],0 
+00000091  jle         00000115 
+00000097  mov         eax,dword ptr [ebp-30h] 
+0000009a  mov         eax,dword ptr [ebp-18h] 
+0000009d  shl         eax,4 
+000000a0  mov         edx,dword ptr [ebp-30h] 
+000000a3  lea         edx,[edx+eax+8] 
+000000a7  mov         edi,dword ptr [edx] 
+000000a9  mov         esi,dword ptr [edx+4] 
+000000ac  mov         eax,dword ptr [edx+8] 
+000000af  mov         dword ptr [ebp-1Ch],eax 
+000000b2  mov         edx,dword ptr [edx+0Ch] 
+                        // read
+                        var lhs = state[step.LeftInputIndex];
+000000b5  cmp         edi,ecx 
+000000b7  jae         0000015A 
+000000bd  mov         edi,dword ptr [ebx+edi*4+8] 
+                        var rhs = state[step.RightInputIndex];
+000000c1  cmp         esi,ecx 
+000000c3  jae         0000015A 
+000000c9  mov         esi,dword ptr [ebx+esi*4+8] 
+
+                        // eval
+                        int result;
+                        switch (step.Operation) {
+000000cd  cmp         edx,6 
+000000d0  jae         00000140 
+000000d2  jmp         dword ptr [edx*4+00753CC0h] 
+                        case Operation.Add:
+                            unchecked {
+                                result = lhs + rhs;
+000000d9  add         edi,esi 
+000000db  mov         edx,edi 
+000000dd  jmp         000000FC 
+                        case Operation.Multiply:
+                            unchecked {
+                                result = lhs*rhs;
+000000df  imul        esi,edi 
+000000e2  mov         edx,esi 
+000000e4  jmp         000000FC 
+                        case Operation.Subtract:
+                            unchecked {
+                                result = lhs - rhs;
+000000e6  sub         edi,esi 
+000000e8  mov         edx,edi 
+000000ea  jmp         000000FC 
+                        case Operation.Xor:
+                            result = lhs ^ rhs;
+000000ec  xor         edi,esi 
+000000ee  mov         edx,edi 
+000000f0  jmp         000000FC 
+                        case Operation.Or:
+                            result = lhs | rhs;
+000000f2  or          edi,esi 
+000000f4  mov         edx,edi 
+000000f6  jmp         000000FC 
+                        case Operation.And:
+                            result = lhs & rhs;
+000000f8  and         edi,esi 
+000000fa  mov         edx,edi 
+                        }
+
+                        // write
+                        state[step.OutputIndex] = result;
+000000fc  mov         eax,dword ptr [ebp-1Ch] 
+000000ff  cmp         eax,ecx 
+00000101  jae         0000015A 
+00000103  mov         dword ptr [ebx+eax*4+8],edx 
+00000107  inc         dword ptr [ebp-18h] 
+                    foreach (var step in Steps) {
+0000010a  mov         eax,dword ptr [ebp-30h] 
+0000010d  mov         eax,dword ptr [eax+4] 
+00000110  cmp         eax,dword ptr [ebp-18h] 
+00000113  jg          0000009A 
+                for (var i = 0; i < n; i++) {
+00000115  inc         dword ptr [ebp-14h] 
+00000118  mov         eax,dword ptr [ebp-14h] 
+0000011b  cmp         eax,dword ptr [ebp-10h] 
+0000011e  jl          00000058 
+00000124  jmp         0000002D 
+                    }
+                }
+            }
+            // result is last state variable
+            return state[state.Length - 1];
+00000129  mov         eax,dword ptr [ebx+4] 
+0000012c  dec         eax 
+0000012d  mov         ecx,dword ptr [ebx+4] 
+00000130  cmp         eax,ecx 
+00000132  jae         0000015A 
+00000134  mov         eax,dword ptr [ebx+eax*4+8] 
+00000138  lea         esp,[ebp-0Ch] 
+0000013b  pop         ebx 
+0000013c  pop         esi 
+0000013d  pop         edi 
+0000013e  pop         ebp 
+0000013f  ret 
+                        default:
+                            throw new InvalidOperationException();
+00000140  mov         ecx,6CED072Ch 
+00000145  call        FFE3E5A0 
+0000014a  mov         esi,eax 
+0000014c  mov         ecx,esi 
+0000014e  call        6C5FD418 
+00000153  mov         ecx,esi 
+00000155  call        6D561650 
+0000015a  call        6D6D2977 
+0000015f  int         3 

@@ -1,0 +1,69 @@
+﻿--- c:\Users\Craig\Desktop\Active\Methods\Methods\Methods\ExpressionHash\ExpressionHashUtil.cs 
+            var num2 = 0;
+00000000  push        ebp 
+00000001  mov         ebp,esp 
+00000003  push        edi 
+00000004  push        esi 
+00000005  push        ebx 
+00000006  sub         esp,0Ch 
+00000009  mov         dword ptr [ebp-14h],ecx 
+            var num3 = 0;
+0000000c  xor         esi,esi 
+            var num5 = 0;
+0000000e  mov         dword ptr [ebp-10h],esi 
+            var buffer = new[] {0x1000};
+00000011  mov         ecx,6CAE4C8Ah 
+00000016  lea         edx,[esi+1] 
+00000019  call        FFD0E6C0 
+0000001e  mov         dword ptr [ebp-18h],eax 
+00000021  mov         eax,dword ptr [ebp-18h] 
+00000024  cmp         dword ptr [eax+4],0 
+00000028  jbe         00000078 
+0000002a  mov         dword ptr [eax+8],1000h 
+                var num = stream1.Read(buffer);
+00000031  mov         ecx,dword ptr [ebp-14h] 
+00000034  mov         edx,dword ptr [ebp-18h] 
+00000037  mov         eax,dword ptr [ecx] 
+00000039  mov         eax,dword ptr [eax+28h] 
+0000003c  call        dword ptr [eax+10h] 
+0000003f  mov         ebx,eax 
+                if (num == 0) {
+00000041  test        ebx,ebx 
+00000043  jne         00000050 
+                    return num5;
+00000045  mov         eax,dword ptr [ebp-10h] 
+00000048  lea         esp,[ebp-0Ch] 
+0000004b  pop         ebx 
+0000004c  pop         esi 
+0000004d  pop         edi 
+0000004e  pop         ebp 
+0000004f  ret 
+                }
+                var num6 = 0;
+00000050  xor         edx,edx 
+                while (num6 < num) {
+00000052  test        ebx,ebx 
+00000054  jle         00000031 
+00000056  mov         eax,dword ptr [ebp-18h] 
+00000059  mov         ecx,dword ptr [eax+4] 
+                    var index = num6;
+0000005c  mov         edi,edx 
+                    num6 = index + 1;
+0000005e  inc         edx 
+                    num2 = buffer[index];
+0000005f  mov         eax,dword ptr [ebp-18h] 
+00000062  cmp         edi,ecx 
+00000064  jae         00000078 
+00000066  mov         eax,dword ptr [eax+edi*4+8] 
+                    num3 += num2;
+0000006a  add         esi,eax 
+                    num3 *= num4;
+0000006c  lea         esi,[esi+esi*2] 
+                    num5 ^= num3;
+0000006f  xor         dword ptr [ebp-10h],esi 
+                while (num6 < num) {
+00000072  cmp         edx,ebx 
+00000074  jl          0000005C 
+00000076  jmp         00000031 
+00000078  call        6CB72957 
+0000007d  int         3 
