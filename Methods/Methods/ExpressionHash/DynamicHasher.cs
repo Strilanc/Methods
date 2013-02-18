@@ -131,7 +131,7 @@ namespace Methods.ExpressionHash {
             }));
 
             // applies the hashing steps to each integer read into the buffer
-            var breakTarget = Expression.Label();
+            var breakLabel1 = Expression.Label();
             var iVar = Expression.Variable(typeof (int));
             var processBufferLoop =
                 Expression.Block(
@@ -143,22 +143,22 @@ namespace Methods.ExpressionHash {
                         Expression.Block(
                             Expression.IfThen(
                                 Expression.GreaterThanOrEqual(iVar, readCountVar),
-                                Expression.Break(breakTarget)),
+                                Expression.Break(breakLabel1)),
                             // input into hash via first state variable
                             Expression.Assign(stateVars[0], Expression.ArrayAccess(bufferVar, Expression.PostIncrementAssign(iVar))),
                             // run hash steps
                             runAllStepsBlock),
-                        breakTarget));
+                        breakLabel1));
 
             // reads integers into the buffer, until there's none left, and processing
-            var bt2 = Expression.Label();
+            var breakLabel2 = Expression.Label();
             var processDataLoop =
                 Expression.Loop(
                     Expression.Block(
                         Expression.Assign(readCountVar, Expression.Call(dataParam, typeof (IntStream).GetMethod("Read"), bufferVar)),
-                        Expression.IfThen(Expression.Equal(readCountVar, Expression.Constant(0)), Expression.Break(bt2)),
+                        Expression.IfThen(Expression.Equal(readCountVar, Expression.Constant(0)), Expression.Break(breakLabel2)),
                         processBufferLoop),
-                    bt2);
+                    breakLabel2);
 
             // put it all together
             var body = Expression.Block(

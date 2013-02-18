@@ -35,13 +35,12 @@ namespace Methods {
 
             // -- uncomment to output the IL to disk, where it can be inspected more easily
             //ExpressionHashUtil.WriteMethodToAssembly(specializedExpression, "SumProductXor");
-
             var interpretedDuration = TimeSpan.Zero;
             var specializedDuration = TimeSpan.Zero;
             
-            Console.WriteLine("Timing interpretation vs dynamically generated code...");
+            Console.WriteLine("Timing interpretation vs dynamically generated code of 'sum product xor' hash...");
             var repeatCount = 10;
-            var streamSize = 1 << 22;
+            var streamSize = 1 << 24;
             foreach (var _ in Enumerable.Range(0, repeatCount)) {
                 timer.Restart();
                 var r1 = ExpressionHashUtil.SumProductXor.Interpret(new CountingStream(streamSize));
