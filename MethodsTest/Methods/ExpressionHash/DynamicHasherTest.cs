@@ -18,16 +18,16 @@ public class DynamicHasherTest {
         g(new CountingStream(100)).AssertEquals(Enumerable.Range(0, 100).Sum());
     }
     [TestMethod]
-    public void SumProductXorHash() {
-        var r1 = ExpressionHashUtil.SumProductXor.Interpret(new CountingStream(100));
-        var r2 = ExpressionHashUtil.SpecializedSumProductXorFunction(new CountingStream(100));
-        var r3 = ExpressionHashUtil.SumProductXor.Specialize().Compile()(new CountingStream(100));
+    public void ExampleHash() {
+        var r1 = ExpressionHashUtil.Example.Interpret(new CountingStream(100));
+        var r2 = ExpressionHashUtil.SpecializedExampleFunction(new CountingStream(100));
+        var r3 = ExpressionHashUtil.Example.Specialize().Compile()(new CountingStream(100));
         r1.AssertEquals(r2);
         r1.AssertEquals(r3);
 
-        var s1 = ExpressionHashUtil.SumProductXor.Interpret(new RepeatStream(50, 100));
-        var s2 = ExpressionHashUtil.SpecializedSumProductXorFunction(new RepeatStream(50, 100));
-        var s3 = ExpressionHashUtil.SumProductXor.Specialize().Compile()(new RepeatStream(50, 100));
+        var s1 = ExpressionHashUtil.Example.Interpret(new RepeatStream(50, 100));
+        var s2 = ExpressionHashUtil.SpecializedExampleFunction(new RepeatStream(50, 100));
+        var s3 = ExpressionHashUtil.Example.Specialize().Compile()(new RepeatStream(50, 100));
         s1.AssertEquals(s2);
         s1.AssertEquals(s3);
     }

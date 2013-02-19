@@ -29,21 +29,21 @@ namespace Methods {
 
             Console.WriteLine("Generating dynamically specialized code...");
             timer.Start();
-            var specializedExpression = ExpressionHashUtil.SumProductXor.Specialize();
+            var specializedExpression = ExpressionHashUtil.Example.Specialize();
             var specializedMethod = specializedExpression.Compile();
             Console.WriteLine("Done after {0:0}ms", timer.Elapsed.TotalMilliseconds);
 
             // -- uncomment to output the IL to disk, where it can be inspected more easily
-            //ExpressionHashUtil.WriteMethodToAssembly(specializedExpression, "SumProductXor");
+            //ExpressionHashUtil.WriteMethodToAssembly(specializedExpression, "Example");
             var interpretedDuration = TimeSpan.Zero;
             var specializedDuration = TimeSpan.Zero;
             
-            Console.WriteLine("Timing interpretation vs dynamically generated code of 'sum product xor' hash...");
+            Console.WriteLine("Timing interpretation vs dynamically generated code of example hash...");
             var repeatCount = 10;
             var streamSize = 1 << 24;
             foreach (var _ in Enumerable.Range(0, repeatCount)) {
                 timer.Restart();
-                var r1 = ExpressionHashUtil.SumProductXor.Interpret(new CountingStream(streamSize));
+                var r1 = ExpressionHashUtil.Example.Interpret(new CountingStream(streamSize));
                 var t = timer.Elapsed;
                 interpretedDuration += t;
                 Console.Write("Interpreted: {0:0}ms", t.TotalMilliseconds);

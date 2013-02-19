@@ -1,69 +1,73 @@
-﻿--- c:\Users\Craig\Desktop\Active\Methods\Methods\Methods\ExpressionHash\ExpressionHashUtil.cs 
-            var num2 = 0;
+﻿            var num2 = 0;
 00000000  push        ebp 
 00000001  mov         ebp,esp 
 00000003  push        edi 
 00000004  push        esi 
 00000005  push        ebx 
-00000006  sub         esp,0Ch 
-00000009  mov         dword ptr [ebp-14h],ecx 
-            var num3 = 0;
-0000000c  xor         esi,esi 
-            var num5 = 0;
-0000000e  mov         dword ptr [ebp-10h],esi 
+00000006  sub         esp,14h 
+00000009  mov         dword ptr [ebp-1Ch],ecx 
+            var num3 = 0x1a730b3b;
+0000000c  mov         esi,1A730B3Bh 
+            var num4 = 0x13d66648;
+00000011  mov         dword ptr [ebp-10h],13D66648h 
+            var num5 = 0x3e0c5f92;
+00000018  mov         ebx,3E0C5F92h 
             var buffer = new[] {0x1000};
-00000011  mov         ecx,6CAE4C8Ah 
-00000016  lea         edx,[esi+1] 
-00000019  call        FFD0E6C0 
-0000001e  mov         dword ptr [ebp-18h],eax 
-00000021  mov         eax,dword ptr [ebp-18h] 
-00000024  cmp         dword ptr [eax+4],0 
-00000028  jbe         00000078 
-0000002a  mov         dword ptr [eax+8],1000h 
+0000001d  mov         ecx,67D34C8Ah 
+00000022  mov         edx,1 
+00000027  call        FFD5E4E8 
+0000002c  mov         dword ptr [ebp-20h],eax 
+0000002f  mov         eax,dword ptr [ebp-20h] 
+00000032  cmp         dword ptr [eax+4],0 
+00000036  jbe         0000008F 
+00000038  mov         dword ptr [eax+8],1000h 
                 var num = stream1.Read(buffer);
-00000031  mov         ecx,dword ptr [ebp-14h] 
-00000034  mov         edx,dword ptr [ebp-18h] 
-00000037  mov         eax,dword ptr [ecx] 
-00000039  mov         eax,dword ptr [eax+28h] 
-0000003c  call        dword ptr [eax+10h] 
-0000003f  mov         ebx,eax 
+0000003f  mov         ecx,dword ptr [ebp-1Ch] 
+00000042  mov         edx,dword ptr [ebp-20h] 
+00000045  mov         eax,dword ptr [ecx] 
+00000047  mov         eax,dword ptr [eax+28h] 
+0000004a  call        dword ptr [eax+10h] 
+0000004d  mov         dword ptr [ebp-14h],eax 
                 if (num == 0) {
-00000041  test        ebx,ebx 
-00000043  jne         00000050 
+00000050  test        eax,eax 
+00000052  jne         0000005E 
                     return num5;
-00000045  mov         eax,dword ptr [ebp-10h] 
-00000048  lea         esp,[ebp-0Ch] 
-0000004b  pop         ebx 
-0000004c  pop         esi 
-0000004d  pop         edi 
-0000004e  pop         ebp 
-0000004f  ret 
+00000054  mov         eax,ebx 
+00000056  lea         esp,[ebp-0Ch] 
+00000059  pop         ebx 
+0000005a  pop         esi 
+0000005b  pop         edi 
+0000005c  pop         ebp 
+0000005d  ret 
                 }
                 var num6 = 0;
-00000050  xor         edx,edx 
+0000005e  xor         ecx,ecx 
                 while (num6 < num) {
-00000052  test        ebx,ebx 
-00000054  jle         00000031 
-00000056  mov         eax,dword ptr [ebp-18h] 
-00000059  mov         ecx,dword ptr [eax+4] 
+00000060  cmp         dword ptr [ebp-14h],0 
+00000064  jle         0000003F 
+00000066  mov         eax,dword ptr [ebp-20h] 
+00000069  mov         edi,dword ptr [eax+4] 
                     var index = num6;
-0000005c  mov         edi,edx 
+0000006c  mov         dword ptr [ebp-18h],ecx 
                     num6 = index + 1;
-0000005e  inc         edx 
+0000006f  inc         ecx 
                     num2 = buffer[index];
-0000005f  mov         eax,dword ptr [ebp-18h] 
-00000062  cmp         edi,ecx 
-00000064  jae         00000078 
-00000066  mov         eax,dword ptr [eax+edi*4+8] 
-                    num3 += num2;
-0000006a  add         esi,eax 
-                    num3 *= num4;
-0000006c  lea         esi,[esi+esi*2] 
+00000070  mov         eax,dword ptr [ebp-18h] 
+00000073  mov         edx,dword ptr [ebp-20h] 
+00000076  cmp         eax,edi 
+00000078  jae         0000008F 
+0000007a  mov         eax,dword ptr [edx+eax*4+8] 
+                    num3 ^= num2;
+0000007e  xor         esi,eax 
+                    num4 -= num5;
+00000080  sub         dword ptr [ebp-10h],ebx 
                     num5 ^= num3;
-0000006f  xor         dword ptr [ebp-10h],esi 
+00000083  xor         ebx,esi 
+                    num3 += num4;
+00000085  add         esi,dword ptr [ebp-10h] 
                 while (num6 < num) {
-00000072  cmp         edx,ebx 
-00000074  jl          0000005C 
-00000076  jmp         00000031 
-00000078  call        6CB72957 
-0000007d  int         3 
+00000088  cmp         ecx,dword ptr [ebp-14h] 
+0000008b  jl          0000006C 
+0000008d  jmp         0000003F 
+0000008f  call        69BC277F 
+00000094  int         3 
