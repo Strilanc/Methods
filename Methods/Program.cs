@@ -35,8 +35,6 @@ namespace Methods {
 
             // -- uncomment to output the IL to disk, where it can be inspected more easily
             //ExpressionHashUtil.WriteMethodToAssembly(specializedExpression, "Example");
-            var interpretedDuration = TimeSpan.Zero;
-            var specializedDuration = TimeSpan.Zero;
             
             Console.WriteLine("Timing interpretation vs dynamically generated code of example hash...");
             var repeatCount = 10;
@@ -44,15 +42,13 @@ namespace Methods {
             foreach (var _ in Enumerable.Range(0, repeatCount)) {
                 timer.Restart();
                 var r1 = ExpressionHashUtil.Example.Interpret(new CountingStream(streamSize));
-                var t = timer.Elapsed;
-                interpretedDuration += t;
-                Console.Write("Interpreted: {0:0}ms", t.TotalMilliseconds);
+                var t1 = timer.Elapsed;
+                Console.Write("Interpreted: {0:0}ms", t1.TotalMilliseconds);
                 
                 timer.Restart();
                 var r2 = specializedMethod(new CountingStream(streamSize));
-                t = timer.Elapsed;
-                specializedDuration += t;
-                Console.Write(", Specialized: {0:0}ms", t.TotalMilliseconds);
+                var t2 = timer.Elapsed;
+                Console.Write(", Specialized: {0:0}ms", t2.TotalMilliseconds);
                 Console.WriteLine(r1 == r2 ? "" : ", !!!Didn't match!!!");
             }
         }
