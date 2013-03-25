@@ -4,9 +4,16 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Threading.Tasks;
-using System.Reactive.Linq;
 
 internal static class TestUtil {
+    public static Exception Catch(Action action) {
+        try {
+            action();
+            return null;
+        } catch (Exception ex) {
+            return ex;
+        }
+    }
     public static IReadOnlyList<Task<T>> ObserveEventualIntoList<T>(this IObservable<T> items) {
         var li = new List<TaskCompletionSource<T>> { new TaskCompletionSource<T>() };
         var ri = new List<Task<T>> { li[0].Task };

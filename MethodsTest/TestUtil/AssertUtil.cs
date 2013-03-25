@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 internal static class AssertUtil {
+    public static void Throws<T>(Action action) where T : Exception {
+        try {
+            action();
+            Assert.Fail("Expected an exception of type {0} but none was thrown.", typeof (T).FullName);
+        } catch (T) {
+            // good
+        }
+    }
     [DebuggerStepThrough]
     public static void AssertEquals<T>(this T expected, T actual) {
         Assert.AreEqual(actual, expected);
