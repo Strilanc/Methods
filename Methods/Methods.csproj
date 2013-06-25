@@ -59,6 +59,7 @@
     <Compile Include="Methods\ExpressionHash\IntStream.cs" />
     <Compile Include="Methods\ExpressionHash\ExpressionHashUtil.cs" />
     <Compile Include="Methods\ExpressionHash\RepeatStream.cs" />
+    <Compile Include="Methods\LazyCount\LazyCountUtil.cs" />
     <Compile Include="Methods\LineSweepPoint\Point.cs" />
     <Compile Include="Methods\LineSweepPoint\Vector.cs" />
     <Compile Include="Methods\LineSweepPoint\LineSegment.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Methods\WhenEach.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Methods\LazyCount\LazyCounter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

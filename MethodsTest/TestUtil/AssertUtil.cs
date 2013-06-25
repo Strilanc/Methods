@@ -14,6 +14,15 @@ internal static class AssertUtil {
             // good
         }
     }
+    public static void Throws<T>(Func<T> func) {
+        try {
+            func();
+            Assert.Fail("Expected an exception of type {0} but none was thrown.", typeof(Exception).FullName);
+        }
+        catch (Exception) {
+            // good
+        }
+    }
     [DebuggerStepThrough]
     public static void AssertEquals<T>(this T expected, T actual) {
         Assert.AreEqual(actual, expected);

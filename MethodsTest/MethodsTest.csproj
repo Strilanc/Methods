@@ -68,6 +68,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Methods\LazyCountTest.cs" />
     <Compile Include="Methods\ExpressionHash\DynamicHasherTest.cs" />
     <Compile Include="Methods\LineSweepPoint\LineSweepPointTest.cs" />
     <Compile Include="Methods\LinkedListIntersection\LinkedListIntersectionTest.cs" />
