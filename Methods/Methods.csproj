@@ -65,6 +65,7 @@
     <Compile Include="Methods\LineSweepPoint\LineSegment.cs" />
     <Compile Include="Methods\LineSweepPoint\GeometryUtil.cs" />
     <Compile Include="Methods\LinkedListIntersection\LinkedListIntersection.cs" />
+    <Compile Include="Methods\SearchBisortedGrid\SearchBisortedGrid.cs" />
     <Compile Include="Types\ActorModel\ActorSynchronizationContext.cs" />
     <Compile Include="Types\ActorModel\SynchronizationContextAwaiter.cs" />
     <Compile Include="Types\ActorModel\SynchronizationContextExtensions.cs" />

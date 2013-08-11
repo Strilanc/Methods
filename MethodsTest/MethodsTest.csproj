@@ -72,6 +72,7 @@
     <Compile Include="Methods\ExpressionHash\DynamicHasherTest.cs" />
     <Compile Include="Methods\LineSweepPoint\LineSweepPointTest.cs" />
     <Compile Include="Methods\LinkedListIntersection\LinkedListIntersectionTest.cs" />
+    <Compile Include="Methods\SearchBisortedGridTest.cs" />
     <Compile Include="Types\ActorModel\ActorSynchronizationContextTest.cs" />
     <Compile Include="Types\ActorModel\SynchronizationContextAwaiterTest.cs" />
     <Compile Include="Types\ConstantTimeImmutableQueue\QueueTest.cs" />
