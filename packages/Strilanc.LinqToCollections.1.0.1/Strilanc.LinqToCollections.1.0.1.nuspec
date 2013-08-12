@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Strilanc.LinqToCollections</id>
+    <version>1.0.1</version>
+    <title>Linq to Collections</title>
+    <authors>Craig Gidney</authors>
+    <owners>Craig Gidney</owners>
+    <projectUrl>https://github.com/Strilanc/LinqToCollections</projectUrl>
+    <iconUrl>http://i.imgur.com/MbBB1.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Implements types and extension methods for transforming and implicitly defining instances of the readonly collection interfaces new to .Net 4.5.
+
+(The interfaces are IReadOnlyList&lt;T&gt;, IReadOnlyCollection&lt;T&gt;, and IReadOnlyDictionary&lt;K,V&gt;.)
+
+For example, the library implements a Select method that ensures the result of 'from e in list select e * e' supports random access.</description>
+    <summary>Types and methods for lazily transforming and implicitly defining the readonly collections interaces new to .Net 4.5.</summary>
+    <releaseNotes>Breaking change. Fixed an ambiguity with Enumerable.Select by renaming ReadOnlyDictionary.Select to SelectValue.</releaseNotes>
+    <copyright>Public Domain</copyright>
+    <language>en-US</language>
+    <tags>linq collection list dictionary</tags>
+  </metadata>
+</package>

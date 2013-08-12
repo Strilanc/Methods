@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LinqToCollections</name>
+    </assembly>
+    <members>
+        <member name="T:Strilanc.LinqToCollections.AbstractReadOnlyCollection`1">
+            <summary>A partially implemented readonly collection.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AbstractReadOnlyCollection`1.GetEnumerator">
+            <summary>Enumerates the items in the collection.</summary>
+        </member>
+        <member name="P:Strilanc.LinqToCollections.AbstractReadOnlyCollection`1.Count">
+            <summary>The number of items in the collection.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.AnonymousReadOnlyCollection`1">
+            <summary>A readonly collection implemented with delegates passed to its constructor.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.IBoundedCount">
+            <summary>
+            Provides optional bounds on the size a collection can be.
+            Checked for by methods like Take and Skip in order to perform optimizations.
+            </summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AnonymousReadOnlyCollection`1.#ctor(System.Func{System.Int32},System.Func{System.Collections.Generic.IEnumerator{`0}})">
+            <summary>Constructs a readable collection implementation.</summary>
+            <param name="counter">Determines the non-negative number of collection items.</param>
+            <param name="iterator">Enumerates the items in the collection.</param>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AnonymousReadOnlyCollection`1.#ctor(System.Int32,System.Func{System.Collections.Generic.IEnumerator{`0}})">
+            <summary>Constructs a readable collection implementation.</summary>
+            <param name="count">The non-negative number of collection items.</param>
+            <param name="iterator">Enumerates the items in the collection.</param>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.CollectionAdapter`1">
+            <summary>Exposes a readonly collection as a mutable collection that doesn't support mutation.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.ReadOnlyCollection">
+            <summary>Contains extension methods for readonly collections.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyCollection.AsReadOnlyCollection``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Exposes a collection as a read-only collection.
+            Tries to unwrap the collection, removing previous AsICollection overhead if possible.
+            Tries to cast the collection, unless the collection is not marked as read-only.
+            </summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyCollection.AsICollection``1(System.Collections.Generic.IReadOnlyCollection{``0})">
+            <summary>Exposes a read-only collection as a collection, using a cast if possible.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyCollection.Empty``1">
+            <summary>Returns a readable collection with no items.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.AbstractReadOnlyDictionary`2">
+            <summary>A partially implemented readonly dictionary.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AbstractReadOnlyDictionary`2.TryGetValue(`0,`1@)">
+            <summary>Tries to get the value associated with a key, returning true when successful.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AbstractReadOnlyDictionary`2.ContainsKey(`0)">
+            <summary>Determines if a given key is in the dictionary.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AbstractReadOnlyDictionary`2.GetEnumerator">
+            <summary>Enumerates the key/value pairs in the dictionary.</summary>
+        </member>
+        <member name="P:Strilanc.LinqToCollections.AbstractReadOnlyDictionary`2.Count">
+            <summary>The number of key/value pairs in the dictionary.</summary>
+        </member>
+        <member name="P:Strilanc.LinqToCollections.AbstractReadOnlyDictionary`2.Keys">
+            <summary>The keys in the dictionary.</summary>
+        </member>
+        <member name="P:Strilanc.LinqToCollections.AbstractReadOnlyDictionary`2.Values">
+            <summary>The values in the dictionary.</summary>
+        </member>
+        <member name="P:Strilanc.LinqToCollections.AbstractReadOnlyDictionary`2.Item(`0)">
+            <summary>Returns the value associated with the given key, throwing an exception if no such key is in the dictionary.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.TryGetter`2">
+            <summary>Determines if a key is in a dictionary and returns the associated value.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.AnonymousReadOnlyDictionary`2">
+            <summary>A readonly dictionary implemented with delegates passed to its constructor.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AnonymousReadOnlyDictionary`2.#ctor(System.Collections.Generic.IReadOnlyCollection{`0},Strilanc.LinqToCollections.TryGetter{`0,`1})">
+            <summary>Creates an anonymous dictionary with a collection of keys mapped by a value getter.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AnonymousReadOnlyDictionary`2.#ctor(System.Int32,System.Collections.Generic.IEnumerable{`0},Strilanc.LinqToCollections.TryGetter{`0,`1})">
+            <summary>Creates an anonymous dictionary with a fixed number of keys mapped by a value getter.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AnonymousReadOnlyDictionary`2.#ctor(System.Func{System.Int32},System.Collections.Generic.IEnumerable{`0},Strilanc.LinqToCollections.TryGetter{`0,`1})">
+            <summary>Creates an anonymous dictionary based on a counter, keys, and a getter.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.DictionaryAdapter`2">
+            <summary>Exposes a readonly dictionary as a mutable dictionary that doesn't support mutation.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.ReadOnlyDictionary">
+            <summary>Contains extension methods for readonly dictionaries.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyDictionary.AsReadOnlyDictionary``2(System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Exposes a dictionary as a read-only dictionary.
+            Tries to unwrap the dictionary, removing previous AsIList overhead if possible.
+            Tries to cast the dictionary, unless the dictionary is not marked as read-only.
+            </summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyDictionary.AsIDictionary``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1})">
+            <summary>Exposes a read-only dictionary as a dictionary, using a cast if possible.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyDictionary.SelectValue``3(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{System.Collections.Generic.KeyValuePair{``0,``1},``2})">
+            <summary>Returns a readable dictionary with the same keys, but values determined by projecting the existing key/value pairs.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyDictionary.Empty``2">
+            <summary>Returns a readable dictionary with no items.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.AbstractReadOnlyList`1">
+            <summary>A partially implemented readonly list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AbstractReadOnlyList`1.GetEnumerator">
+            <summary>Enumerates the items in the list.</summary>
+        </member>
+        <member name="P:Strilanc.LinqToCollections.AbstractReadOnlyList`1.Count">
+            <summary>The number of items in the list.</summary>
+        </member>
+        <member name="P:Strilanc.LinqToCollections.AbstractReadOnlyList`1.Item(System.Int32)">
+            <summary>Returns the item at the given index in the list.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.AnonymousReadOnlyList`1">
+            <summary>A readonly list implemented with delegates passed to its constructor.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AnonymousReadOnlyList`1.#ctor(System.Func{System.Int32},System.Func{System.Int32,`0},System.Collections.Generic.IEnumerable{`0})">
+            <summary>Constructs a readable list implementation.</summary>
+            <param name="counter">Determines the non-negative number of list items.</param>
+            <param name="getter">Retrieves list items by index.</param>
+            <param name="optionalEfficientIterator">Optionally used to provide a more efficient/capable iterator than accessing each index in turn.</param>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.AnonymousReadOnlyList`1.#ctor(System.Int32,System.Func{System.Int32,`0},System.Collections.Generic.IEnumerable{`0})">
+            <summary>Constructs a readable list implementation.</summary>
+            <param name="count">The non-negative number of list items.</param>
+            <param name="getter">Retrieves list items by index.</param>
+            <param name="optionalEfficientIterator">Optionally used to provide a more efficient/capable iterator than accessing each index in turn.</param>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.ListAdapter`1">
+            <summary>Exposes a readonly list as a mutable list that doesn't support mutation.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.ListEmpty`1">
+            <summary>A singleton for empty readable lists.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.ListSkip`1">
+            <summary>Manages both the Skip and SkipLast operations on readable lists.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.ListTakeFirst`1">
+            <summary>Manages the Take operation on readable lists.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.ListTakeLast`1">
+            <summary>Manages the TakeLast operation on readable lists.</summary>
+        </member>
+        <member name="T:Strilanc.LinqToCollections.ReadOnlyList">
+            <summary>Contains extension methods for readonly lists.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Require``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>Requires that there be a given minimum number of items in a list, checking whenever it is accessed.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.AsReadOnlyList``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Exposes a list as a read-only list.
+            Tries to unwrap the list, removing previous AsIList overhead if possible.
+            Tries to cast the list, unless the list is not marked as read-only.
+            </summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.AsIList``1(System.Collections.Generic.IReadOnlyList{``0})">
+            <summary>Exposes a read-only list as a list, using a cast if possible.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Skip``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>Exposes the end of a readable list, after skipping up to the given number of items, as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.SkipLast``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>Exposes the start of a readable list, before skipping down to the given number of items at the end, as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Take``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>Exposes the start of a readable list, up to the given number of items, as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.TakeLast``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>Exposes the end of a readable list, down to the given number of items, as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.SkipRequire``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>Exposes the end of a readable list, after skipping exactly the given number of items, as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.SkipLastRequire``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>Exposes the start of a readable list, before skipping exactly the given number of items at the end, as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.TakeRequire``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>Exposes the start of a readable list, up to exactly the given number of items, as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.TakeLastRequire``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>Exposes the end of a readable list, down to exactly the given number of items, as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Select``2(System.Collections.Generic.IReadOnlyList{``0},System.Func{``0,``1})">
+            <summary>Projects each element of a readable list into a new form and exposes the results as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Select``2(System.Collections.Generic.IReadOnlyList{``0},System.Func{``0,System.Int32,``1})">
+            <summary>Projects each element of a readable list into a new form by incorporating the element's index and exposes the results as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Zip``3(System.Collections.Generic.IReadOnlyList{``0},System.Collections.Generic.IReadOnlyList{``1},System.Func{``0,``1,``2})">
+            <summary>Merges two readable lists using the specified projection and exposes the results as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Zip``4(System.Collections.Generic.IReadOnlyList{``0},System.Collections.Generic.IReadOnlyList{``1},System.Collections.Generic.IReadOnlyList{``2},System.Func{``0,``1,``2,``3})">
+            <summary>Merges three readable lists using the specified projection and exposes the results as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Zip``5(System.Collections.Generic.IReadOnlyList{``0},System.Collections.Generic.IReadOnlyList{``1},System.Collections.Generic.IReadOnlyList{``2},System.Collections.Generic.IReadOnlyList{``3},System.Func{``0,``1,``2,``3,``4})">
+            <summary>Merges four readable lists using the specified projection and exposes the results as a readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Reverse``1(System.Collections.Generic.IReadOnlyList{``0})">
+            <summary>Returns a readable list with the same elements but in the reverse order.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Last``1(System.Collections.Generic.IReadOnlyList{``0})">
+            <summary>Returns the last element in a non-empty readable list.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.LastOrDefault``1(System.Collections.Generic.IReadOnlyList{``0},``0)">
+            <summary>Returns the last element in a non-empty readable list, or a default value if the list is empty.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Range(System.SByte)">
+            <summary>Returns a readable list composed of the non-negative signed bytes less than the given count, in increasing order starting at 0.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Range(System.Byte)">
+            <summary>Returns a readable list composed of the bytes less than the given count, in increasing order starting at 0.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Range(System.Int16)">
+            <summary>Returns a readable list composed of the non-negative signed shorts less than the given count, in increasing order starting at 0.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Range(System.UInt16)">
+            <summary>Returns a readable list composed of the unsigned shorts less than the given count, in increasing order starting at 0.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Range(System.Int32)">
+            <summary>Returns a readable list composed of the non-negative signed integers less than the given count, in increasing order starting at 0.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.AllBytes">
+            <summary>Returns a readable list of all the unsigned bytes, from 0 to 255, in increasing order.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.AllUnsigned16BitIntegers">
+            <summary>Returns a readable list of all the unsigned shorts, from 0 to 65535, in increasing order.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.AllSignedBytes">
+            <summary>Returns a readable list of all the signed bytes, from -128 to 127, in increasing order.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.AllSigned16BitIntegers">
+            <summary>Returns a readable list of all the signed shorts, from -32768 to 32767, in increasing order.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Empty``1">
+            <summary>Returns a readable list with no items.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Singleton``1(``0)">
+            <summary>Returns a readable list with a single item.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Repeat``1(``0,System.Int32)">
+            <summary>Returns a readable list composed of a value repeated a desired number of times.</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Stride``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>Lists the items, from the given list, whose indices are congruent to 0 (modulo the given stride length).</summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Deinterleave``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>
+            Lists some lists that, when interleaved, results in the given list.
+            Each returned list contains the items, from the given list, whose indices are congruent (modulo the given count) to the list's index in the returned list of lists.
+            </summary>
+        </member>
+        <member name="M:Strilanc.LinqToCollections.ReadOnlyList.Partition``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+            <summary>
+            Breaks the list into contiguous groups of items with the given size.
+            The last group may be smaller than the group size.
+            </summary>
+        </member>
+    </members>
+</doc>
