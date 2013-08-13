@@ -8,14 +8,14 @@ static class SearchBisortedGridTestUtil {
     public static void AssertCanFindAllButNot<T>(this IReadOnlyList<IReadOnlyList<T>> items, params T[] excluded) {
         foreach (var item in items) {
             foreach (var e in item) {
-                var r = items.TryFindIndexOfBisortedItem(e);
+                var r = items.TryFindItemInSortedMatrix(e);
                 (r != null).AssertIsTrue();
                 items[r.Item1][r.Item2].AssertEquals(e);
             }
         }
 
         foreach (var e in excluded) {
-            items.TryFindIndexOfBisortedItem(e).AssertEquals(null);
+            items.TryFindItemInSortedMatrix(e).AssertEquals(null);
         }
     }
 }
@@ -58,7 +58,7 @@ public class SearchBisortedGridTest {
                     }
 
                     var target = matrix[rng.Next(width)][rng.Next(height)];
-                    var index = matrix.TryFindIndexOfBisortedItem(target);
+                    var index = matrix.TryFindItemInSortedMatrix(target);
                     (index != null).AssertIsTrue();
                     matrix[index.Item1][index.Item2].AssertEquals(target);
                 }
