@@ -1,0 +1,18 @@
+Public Domain
+
+I, Craig Gidney, wrote all of the code in this repository.
+All of the code in this repository can be used freely and without restriction.
+
+More specifically, that means:
+- Attribution not required.
+- Commercial use allowed.
+- Derivative use allowed.
+- Relicensing allowed.
+
+But note:
+- No guarantees (I did my best to ensure correctness, but I am not infallible.).
+
+Not that I wouldn't mind hearing about it if you used my code...
+If you need a 'real' license for obtuse legal reasons, I would be happy to grant it.
+
+Craig Gidney, 2013
